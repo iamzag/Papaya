@@ -571,3 +571,15 @@ papaya.viewer.ScreenVolume.prototype.resetTransform = function () {
     this.rotationY = 0.5;
     this.rotationZ = 0.5;
 };
+
+
+
+papaya.viewer.ScreenVolume.prototype.getFlip = function () {
+  return this.volume.transform.flip;
+};
+
+
+
+papaya.viewer.ScreenVolume.prototype.setFlip = function (flip) {
+  this.volume.transform.flip = flip;
+};

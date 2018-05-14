@@ -33,6 +33,7 @@ papaya.volume.Transform = papaya.volume.Transform || function (mat, volume) {
     this.rotMatY = papaya.volume.Transform.IDENTITY.clone();
     this.rotMatZ = papaya.volume.Transform.IDENTITY.clone();
     this.rotMat = papaya.volume.Transform.IDENTITY.clone();
+    this.flip = false;
 
     this.updateTransforms(mat);
 };
@@ -318,6 +319,13 @@ papaya.volume.Transform.prototype.updateImageMat = function (centerX, centerY, c
                 (this.tempMat[ctrOut][2] * this.rotMatZ[2][ctrIn]) +
                 (this.tempMat[ctrOut][3] * this.rotMatZ[3][ctrIn]);
         }
+    }
+
+    if (this.flip) {
+      this.rotMat[0][0] = -1 * this.rotMat[0][0];
+      this.rotMat[1][0] = -1 * this.rotMat[1][0];
+      this.rotMat[2][0] = -1 * this.rotMat[2][0];
+      this.rotMat[3][0] = -1 * this.rotMat[3][0];
     }
 
     for (ctrOut = 0; ctrOut < 4; ctrOut += 1) {
